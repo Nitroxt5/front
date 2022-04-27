@@ -1,0 +1,22 @@
+name: pull request test	
+
+env:	
+  NODE_VERSION: 16.x	
+
+on:	
+  pull_request:		
+
+jobs:	
+  build:	
+
+    runs-on: ubuntu-latest	
+
+    steps:	
+    - uses: actions/checkout@v2	
+    - name: Use Node.js ${{ env.NODE_VERSION }}	
+      uses: actions/setup-node@v1	
+      with:	
+        node-version: ${{ env.NODE_VERSION }}
+    - run: npm install -g @angular/cli 
+    - run: npm install	
+    - run: ng test   
