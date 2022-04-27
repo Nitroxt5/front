@@ -7,6 +7,6 @@ import { Component, OnInit } from '@angular/core';
 export class HelloworldComponent implements OnInit {
   message = 'Default text';
   ngOnInit() {
-    this.message = 'Hello world!'
+    this.message = 'Hell world!'
   }
 }
