@@ -4,10 +4,12 @@ env:
   NODE_VERSION: 16.x	
 
 on:	
-  pull_request:		
+  pull_request:
+    branches:
+      - '*'
 
 jobs:	
-  ci:	
+  build:	
 
     runs-on: ubuntu-latest	
 
