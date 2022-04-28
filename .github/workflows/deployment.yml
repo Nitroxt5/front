@@ -7,6 +7,11 @@ on:
   push:
     branches:
       - master
+      
+env:
+  AZURE_WEBAPP_NAME: helloworld-fma
+  AZURE_WEBAPP_PACKAGE_PATH: './dist/front'
+  NODE_VERSION: '16.x' 
 
 jobs:
   test:
@@ -18,7 +23,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: npm install, build, and test
         run: |
@@ -50,7 +55,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'helloworld-fma'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_7aeedcf2f2284ceab99f16b3e01c192f }}
-          package: .
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
